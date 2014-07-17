@@ -1,2 +1,2 @@
-SpaceWeaver
+Weaver
 ===========
