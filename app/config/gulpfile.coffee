@@ -72,7 +72,7 @@ gulp.task "slim", ->
 
 
 gulp.task "generate-index", ->
-  gulp.src "./app/views/*.slim"
+  gulp.src "./app/views/index.slim"
   .pipe run.plumber()
   .pipe run.slim { pretty : true }
   .pipe gulp.dest "./"
@@ -98,4 +98,4 @@ gulp.task "watch", ['browser-sync'], () ->
   gulp.watch paths.sass,                ["sass"]
   gulp.watch paths.coffee,              ["coffee"]
   gulp.watch paths.coffee_includes,     ["coffee"]
-  gulp.watch "./app/views/*.slim",      ["generate-index"]
+  gulp.watch "./app/views/index.slim",  ["generate-index"]
