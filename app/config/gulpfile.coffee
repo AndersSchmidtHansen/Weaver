@@ -18,9 +18,11 @@ inputDest  = "./app/assets"
 outputDest = "./public"
 
 paths =
-  sass            : ["#{inputDest}/sass/**/*.scss"]
+  sass            : ["#{inputDest}/sass/**/*.scss", "!#{inputDest}/sass/polymer/*.scss"]
+  polymer_styles  : ["#{inputDest}/sass/polymer/*.scss"]
   coffee          : ["#{inputDest}/coffeescript/application.coffee"]
-  coffee_includes : ["#{inputDest}/coffeescript/**/*.coffee"]
+  coffee_includes : ["#{inputDest}/coffeescript/**/*.coffee", "!#{inputDest}/coffeescript/polymer/*.coffee"]
+  polymer_scripts : ["#{inputDest}/coffeescript/polymer/*.coffee"]
   slim            : ["./app/views/**/*.slim", "!./app/views/index.slim"]
   bower           : [
                      "./bower_components/deb.js/build/deb.min.js",
@@ -48,6 +50,17 @@ gulp.task "sass", ->
   .pipe run.notify { message : 'SASS compiled and minified!' }
   .pipe reload { stream : true }
 
+gulp.task "polymer-styles", ->
+  gulp.src paths.polymer_styles
+  .pipe run.plumber()
+  .pipe run.rubySass { style : 'compressed' }
+  .pipe run.autoprefixer 'last 2 version', 'safari 5', 'ie 9', 'ios 6', 'android 4'
+  .pipe run.rename { suffix : '.min' }
+  .pipe run.minifyCss()
+  .pipe run.filesize()
+  .pipe gulp.dest "#{outputDest}/css/polymer/"
+  .pipe run.notify { message : 'Polymer styles compiled and minified!' }
+  .pipe reload { stream : true }
 
 gulp.task "coffee", ->
   gulp.src paths.coffee
@@ -59,6 +72,18 @@ gulp.task "coffee", ->
   .pipe run.filesize()
   .pipe gulp.dest "#{outputDest}/js/"
   .pipe run.notify { message : 'Coffeescript compiled and minified!' }
+  .pipe reload { stream : true, once : true }
+
+gulp.task "polymer-scripts", ->
+  gulp.src paths.polymer_scripts
+  .pipe run.plumber()
+  .pipe run.include { extensions : "coffee" }
+  .pipe run.coffee { bare : true }
+  .pipe run.rename { suffix : '.min' }
+  .pipe run.uglify()
+  .pipe run.filesize()
+  .pipe gulp.dest "#{outputDest}/js/polymer/"
+  .pipe run.notify { message : 'Polymer scripts compiled and minified!' }
   .pipe reload { stream : true, once : true }
 
 
@@ -90,12 +115,14 @@ gulp.task "merge-bower", ->
 
 
 # Default
-gulp.task "default", [ "slim", "sass", "coffee", "generate-index", "browser-sync", "merge-bower", "watch"]
+gulp.task "default", [ "slim", "sass", "polymer-styles", "coffee", "polymer-scripts", "generate-index", "browser-sync", "merge-bower", "watch"]
 
 # Watch
 gulp.task "watch", ['browser-sync'], () ->
   gulp.watch paths.slim,                ["slim"]
   gulp.watch paths.sass,                ["sass"]
+  gulp.watch paths.polymer_styles,      ["polymer-styles"]
   gulp.watch paths.coffee,              ["coffee"]
   gulp.watch paths.coffee_includes,     ["coffee"]
+  gulp.watch paths.polymer_scripts,     ["polymer-scripts"]
   gulp.watch "./app/views/index.slim",  ["generate-index"]

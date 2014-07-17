@@ -1,5 +1,5 @@
 doctype html
-html.no-js lang=""
+html.no-js lang="" ng-app=""
   head
     meta charset="utf-8"
     meta content="IE=edge" http-equiv="X-UA-Compatible"
@@ -8,8 +8,10 @@ html.no-js lang=""
 
     title Weave
     link rel="shortcut icon" href="favicon.ico?v=1.1"
-    link href="public/css/application.min.css" rel="stylesheet"
+    link rel="stylesheet" href="public/css/application.min.css"
 
+    script src="bower_components/angular/angular.min.js"
+    script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"
     script src="bower_components/platform/platform.js"
     script src="bower_components/modernizr/modernizr.js"
 
