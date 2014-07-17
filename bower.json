@@ -1,0 +1,28 @@
+{
+  "name": "Weaver",
+  "version": "1.0.0",
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.3.4"
+  },
+  "homepage": "https://github.com/AndersSchmidtHansen/Weaver",
+  "authors": [
+    "Anders Schmidt Hansen <me@andersschmidt.com>"
+  ],
+  "description": "A boilerplate project for web applications utilizing Gulp and polymer",
+  "main": "gulpfile.js",
+  "keywords": [
+    "polymer",
+    "sass",
+    "coffee",
+    "gulp"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

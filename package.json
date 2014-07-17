@@ -1,0 +1,47 @@
+{
+  "name": "Weaver",
+  "version": "1.0.0",
+  "description": "Boilerplate for simple web applications utilizing Polymer elements",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "coffee-script"    : "latest",
+    "browser-sync"     : "latest",
+    "win-spawn"        : "latest",
+    "gulp-load-plugins": "latest",
+    "gulp"             : "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-changed"     : "latest",
+    "gulp-coffee"      : "latest",
+    "gulp-concat"      : "latest",
+    "gulp-ignore"      : "latest",
+    "gulp-filesize"    : "latest",
+    "gulp-slim"        : "latest",
+    "gulp-imagemin"    : "latest",
+    "gulp-minify-css"  : "latest",
+    "gulp-notify"      : "latest",
+    "gulp-plumber"     : "latest",
+    "gulp-include"     : "latest",
+    "gulp-rename"      : "latest",
+    "gulp-ruby-sass"   : "latest",
+    "gulp-uglify"      : "latest",
+    "gulp-util"        : "latest"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndersSchmidtHansen/Weaver.git"
+  },
+  "keywords": [
+    "polymer",
+    "boilerplate",
+    "html"
+  ],
+  "author": "Anders Schmidt Hansen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndersSchmidtHansen/Weaver/issues"
+  },
+  "homepage": "https://github.com/AndersSchmidtHansen/Weaver"
+}
