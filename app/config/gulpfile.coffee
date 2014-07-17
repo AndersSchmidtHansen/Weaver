@@ -22,9 +22,11 @@ paths =
   coffee          : ["#{inputDest}/coffeescript/application.coffee"]
   coffee_includes : ["#{inputDest}/coffeescript/**/*.coffee"]
   slim            : ["./app/views/**/*.slim", "!./app/views/index.slim"]
-  bower           : ["./bower_components/**/*.js",
+  bower           : [
+                     "./bower_components/deb.js/build/deb.min.js",
                      "!./bower_components/platform/*",
-                     "!./bower_components/polymer/*"]
+                     "!./bower_components/polymer/*"
+                    ]
 
 # Tasks
 gulp.task 'browser-sync', ->
@@ -88,7 +90,7 @@ gulp.task "merge-bower", ->
 
 
 # Default
-gulp.task "default", [ "slim", "sass", "coffee", "generate-index", "browser-sync", "watch"]
+gulp.task "default", [ "slim", "sass", "coffee", "generate-index", "browser-sync", "merge-bower", "watch"]
 
 # Watch
 gulp.task "watch", ['browser-sync'], () ->
