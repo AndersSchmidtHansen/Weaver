@@ -12,8 +12,11 @@ PARTIALS        = '/public/html/partials'
 DATABASE_URL    = 'https://vivid-fire-5093.firebaseio.com/'
 USERAPP_API_KEY = '53825164061a0'
 
-app = angular.module 'Weaver', ['ui.router', 'UserApp', 'firebase']
+#-------------------------------------------------
+# Angular Module & Services
+#-------------------------------------------------
 
+app = angular.module 'Weaver', ['ui.router', 'UserApp', 'firebase']
 app
 
 #-------------------------------------------------
