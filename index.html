@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="" ng-app="">
+<html class="no-js" lang="" ng-app="Weaver">
   <head>
     <meta charset="utf-8" />
     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
@@ -14,10 +14,8 @@
     <script src="bower_components/modernizr/modernizr.js"></script>
     <link href="bower_components/polymer/polymer.html" rel="import" />
   </head>
-  <body>
-    <p>
-      Hello world! This is Weaver
-    </p>
+  <body ng-controller="AppController">
+    <main ui-view=""></main>
     <script src="//code.jquery.com/jquery-latest.min.js"></script>
     <script src="public/js/plugins.min.js"></script>
     <script src="public/js/application.min.js"></script>
