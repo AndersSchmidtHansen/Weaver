@@ -123,15 +123,15 @@ gulp.task "merge-bower", ->
 
 
 # Default
-gulp.task "default", [ "slim", "sass", "polymer-styles", "coffee", "polymer-scripts", "generate-index", "polymer-html", "browser-sync", "merge-bower", "watch"]
+gulp.task "default", [ "browser-sync", "merge-bower", "watch" ]
 
 # Watch
 gulp.task "watch", ['browser-sync'], () ->
   gulp.watch paths.slim,                ["slim"]
-  gulp.watch paths.polymer_html,        ["polymer-html"]
   gulp.watch paths.sass,                ["sass"]
-  gulp.watch paths.polymer_styles,      ["polymer-styles"]
   gulp.watch paths.coffee,              ["coffee"]
   gulp.watch paths.coffee_includes,     ["coffee"]
+  gulp.watch paths.polymer_html,        ["polymer-html"]
+  gulp.watch paths.polymer_styles,      ["polymer-styles"]
   gulp.watch paths.polymer_scripts,     ["polymer-scripts"]
   gulp.watch "./app/views/index.slim",  ["generate-index"]

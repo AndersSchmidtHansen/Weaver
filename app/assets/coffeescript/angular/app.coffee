@@ -6,7 +6,7 @@
 
 app = angular.module 'Weaver', ['ui.router']
 
-# Routing
+# Routes
 partialsPath = '/public/html/partials'
 app.config ['$stateProvider', ($stateProvider) ->
   home =
