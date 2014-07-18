@@ -18,6 +18,14 @@ app.config ['$stateProvider', ( $stateProvider ) ->
     data :
       login : true
 
+  signup =
+    name : 'signup'
+    url : '/signup'
+    templateUrl : "#{partialsPath}/signup.html"
+    data :
+      public : true
+
   $stateProvider.state home
   $stateProvider.state login
+  $stateProvider.state signup
 ]
