@@ -8,9 +8,9 @@
 # Constants & Keys
 #-------------------------------------------------
 
-partialsPath = '/public/html/partials'
-DATABASE_URL     = 'https://vivid-fire-5093.firebaseio.com/'
-USERAPP_API_KEY  = '53825164061a0'
+PARTIALS        = '/public/html/partials'
+DATABASE_URL    = 'https://vivid-fire-5093.firebaseio.com/'
+USERAPP_API_KEY = '53825164061a0'
 
 app = angular.module 'Weaver', ['ui.router', 'UserApp', 'firebase']
 
@@ -30,14 +30,14 @@ app
   login =
     name : 'login'
     url : '/login'
-    templateUrl : "#{partialsPath}/login.html"
+    templateUrl : "#{PARTIALS}/login.html"
     data :
       login : true
 
   signup =
     name : 'signup'
     url : '/signup'
-    templateUrl : "#{partialsPath}/signup.html"
+    templateUrl : "#{PARTIALS}/signup.html"
     data :
       public : true
 
