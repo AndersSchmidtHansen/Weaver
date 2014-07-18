@@ -1,7 +1,7 @@
 Weaver
 ===========
 
-Boilerplate for simple web applications utilizing Polymer elements and Angular.
+Framework for crafting simple web applications utilizing Polymer elements and Angular.
 
 **Gulp** is modified to:
 
@@ -16,7 +16,7 @@ Weaver leverages the following technologies and methodologies:
 - Gulp
 - Bower
 - NPM
-- Angular
+- Angular (with ui.router)
 - HTML5 Boilerplate
 - MVCSS
 - Polymer
@@ -24,6 +24,7 @@ Weaver leverages the following technologies and methodologies:
 - SASS
 - Coffeescript
 - BrowserSync
+- UserApp (for easy user registration and management)
 
 ### How can I use it?
 Usage is pretty straightforward. First, clone the repo:
