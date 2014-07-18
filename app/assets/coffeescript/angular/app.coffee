@@ -59,6 +59,11 @@ app
 # Controllers
 #-------------------------------------------------
 .controller 'AppController', [ "$scope", "$firebase", ( $scope, $firebase ) ->
-  $scope.items = $firebase new Firebase "#{DATABASE_URL}/items"
+
+  # Load collections
+  items = new Firebase("#{DATABASE_URL}/items").limit(2)
+
+  # Bind collections
+  $scope.items = $firebase items
 ]
 
