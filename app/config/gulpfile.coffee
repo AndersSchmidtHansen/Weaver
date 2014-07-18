@@ -27,6 +27,8 @@ paths =
   polymer_html    : ["./app/views/polymer/*.slim"]
   bower           : [
                      "./bower_components/deb.js/build/deb.min.js",
+                     "./bower_components/userapp/userapp.client.js",
+                     "./bower_components/userapp-angular/angular.userapp.js",
                      "!./bower_components/platform/*",
                      "!./bower_components/polymer/*"
                     ]
