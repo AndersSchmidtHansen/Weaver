@@ -10,6 +10,7 @@
     "gulp-load-plugins": "latest",
     "gulp"             : "latest",
     "gulp-autoprefixer": "latest",
+    "gulp-watch"       : "latest",
     "gulp-changed"     : "latest",
     "gulp-coffee"      : "latest",
     "gulp-concat"      : "latest",
