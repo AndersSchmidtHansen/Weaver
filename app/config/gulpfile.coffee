@@ -38,6 +38,13 @@ gulp.task 'browser-sync', ->
     server :
       baseDir : "./"
 
+gulp.task "slim", ->
+  gulp.src paths.slim
+  .pipe run.plumber()
+  .pipe run.slim { pretty : true }
+  .pipe gulp.dest "#{outputDest}/html/"
+  .pipe run.notify { message : 'Index file compiled and minified!' }
+  .pipe reload { stream : true }
 
 gulp.task "sass", ->
   gulp.src paths.sass
@@ -49,18 +56,6 @@ gulp.task "sass", ->
   .pipe run.filesize()
   .pipe gulp.dest "#{outputDest}/css/"
   .pipe run.notify { message : 'SASS compiled and minified!' }
-  .pipe reload { stream : true }
-
-gulp.task "polymer-styles", ->
-  gulp.src paths.polymer_styles
-  .pipe run.plumber()
-  .pipe run.rubySass { style : 'compressed' }
-  .pipe run.autoprefixer 'last 2 version', 'safari 5', 'ie 9', 'ios 6', 'android 4'
-  .pipe run.rename { suffix : '.min' }
-  .pipe run.minifyCss()
-  .pipe run.filesize()
-  .pipe gulp.dest "#{outputDest}/css/polymer/"
-  .pipe run.notify { message : 'Polymer styles compiled and minified!' }
   .pipe reload { stream : true }
 
 gulp.task "coffee", ->
@@ -75,6 +70,35 @@ gulp.task "coffee", ->
   .pipe run.notify { message : 'Coffeescript compiled and minified!' }
   .pipe reload { stream : true, once : true }
 
+gulp.task "generate-index", ->
+  gulp.src "./app/views/index.slim"
+  .pipe run.plumber()
+  .pipe run.slim { pretty : true }
+  .pipe gulp.dest "./"
+  .pipe run.notify { message : 'Index file compiled and minified!' }
+  .pipe reload { stream : true }
+
+# Polymer Tasks
+gulp.task "polymer-html", ->
+  gulp.src paths.polymer_html
+  .pipe run.plumber()
+  .pipe run.slim { pretty : true }
+  .pipe gulp.dest "#{outputDest}/html/polymer/"
+  .pipe run.notify { message : 'Polymer HTML compiled and minified!' }
+  .pipe reload { stream : true }
+
+gulp.task "polymer-styles", ->
+  gulp.src paths.polymer_styles
+  .pipe run.plumber()
+  .pipe run.rubySass { style : 'compressed' }
+  .pipe run.autoprefixer 'last 2 version', 'safari 5', 'ie 9', 'ios 6', 'android 4'
+  .pipe run.rename { suffix : '.min' }
+  .pipe run.minifyCss()
+  .pipe run.filesize()
+  .pipe gulp.dest "#{outputDest}/css/polymer/"
+  .pipe run.notify { message : 'Polymer styles compiled and minified!' }
+  .pipe reload { stream : true }
+
 gulp.task "polymer-scripts", ->
   gulp.src paths.polymer_scripts
   .pipe run.plumber()
@@ -86,31 +110,6 @@ gulp.task "polymer-scripts", ->
   .pipe gulp.dest "#{outputDest}/js/polymer/"
   .pipe run.notify { message : 'Polymer scripts compiled and minified!' }
   .pipe reload { stream : true, once : true }
-
-
-gulp.task "slim", ->
-  gulp.src paths.slim
-  .pipe run.plumber()
-  .pipe run.slim { pretty : true }
-  .pipe gulp.dest "#{outputDest}/html/"
-  .pipe run.notify { message : 'Index file compiled and minified!' }
-  .pipe reload { stream : true }
-
-gulp.task "polymer-html", ->
-  gulp.src paths.polymer_html
-  .pipe run.plumber()
-  .pipe run.slim { pretty : true }
-  .pipe gulp.dest "#{outputDest}/html/polymer/"
-  .pipe run.notify { message : 'Polymer HTML compiled and minified!' }
-  .pipe reload { stream : true }
-
-gulp.task "generate-index", ->
-  gulp.src "./app/views/index.slim"
-  .pipe run.plumber()
-  .pipe run.slim { pretty : true }
-  .pipe gulp.dest "./"
-  .pipe run.notify { message : 'Index file compiled and minified!' }
-  .pipe reload { stream : true }
 
 gulp.task "merge-bower", ->
   gulp.src paths.bower
