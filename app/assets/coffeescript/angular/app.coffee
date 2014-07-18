@@ -4,13 +4,14 @@
 |--------------------------------------------------------------------------
 ###
 
-app = angular.module 'Weaver', ['ui.router']
+app = angular.module 'Weaver', ['ui.router', 'UserApp']
 
 #= require routes.coffee
 
 # Initialize
-app.run ['$state', ( $state ) ->
+app.run ['$state', 'user', ( $state, user ) ->
   $state.transitionTo 'home'
+  user.init appId : '53825164061a0'
 ]
 
 # Controllers

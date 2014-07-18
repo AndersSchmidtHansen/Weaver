@@ -5,7 +5,7 @@
 ###
 
 partialsPath = '/public/html/partials'
-app.config ['$stateProvider', ($stateProvider) ->
+app.config ['$stateProvider', ( $stateProvider ) ->
   home =
     name : 'home'
     url : '/'
@@ -15,7 +15,17 @@ app.config ['$stateProvider', ($stateProvider) ->
     name : 'login'
     url : '/login'
     templateUrl : "#{partialsPath}/login.html"
+    data :
+      login : true
+
+  signup =
+    name : 'signup'
+    url : '/signup'
+    templateUrl : "#{partialsPath}/signup.html"
+    data :
+      public : true
 
   $stateProvider.state home
   $stateProvider.state login
+  $stateProvider.state signup
 ]

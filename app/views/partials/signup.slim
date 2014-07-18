@@ -1,0 +1,17 @@
+p Sign up
+
+form ua-signup="" ng-show="!verificationEmailSent"
+  input name="first_name" placeholder="Your name"
+  br
+  input name="login" ua-is-email="" placeholder="Email"
+  br
+  input name="password" placeholder="Password" type="password"
+  br
+  p
+    button type="submit" Create account
+    '  or
+    a href="" ua-oauth-link="google" Sign up with Google
+
+    p ng-show="loading"
+      img src="//app.userapp.io/img/ajax-loader-transparent.gif"
+    p ng-show="error" {{ error.message }}
