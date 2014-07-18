@@ -1,0 +1,15 @@
+<p>
+  Sign up
+</p>
+<form ng-show="!verificationEmailSent" ua-signup="">
+  <input name="first_name" placeholder="Your name" /><br /><input name="login" placeholder="Email" ua-is-email="" /><br /><input name="password" placeholder="Password" type="password" /><br />
+  <p>
+    <button type="submit">Create account</button> or <a href="" ua-oauth-link="google">Sign up with Google</a>
+    <p ng-show="loading">
+      <img src="//app.userapp.io/img/ajax-loader-transparent.gif" />
+    </p>
+    <p ng-show="error">
+      {{ error.message }}
+    </p>
+  </p>
+</form>
