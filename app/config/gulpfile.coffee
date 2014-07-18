@@ -18,13 +18,31 @@ inputDest  = "./app/assets"
 outputDest = "./public"
 
 paths =
-  sass            : ["#{inputDest}/sass/**/*.scss", "!#{inputDest}/sass/polymer/*.scss"]
-  polymer_styles  : ["#{inputDest}/sass/polymer/*.scss"]
-  coffee          : ["#{inputDest}/coffeescript/application.coffee"]
-  coffee_includes : ["#{inputDest}/coffeescript/**/*.coffee", "!#{inputDest}/coffeescript/polymer/*.coffee"]
-  polymer_scripts : ["#{inputDest}/coffeescript/polymer/*.coffee"]
-  slim            : ["./app/views/**/*.slim", "!./app/views/index.slim", "!./app/views/polymer/*.slim"]
+  slim            : [
+                      "./app/views/**/*.slim",
+                      "!./app/views/index.slim",
+                      "!./app/views/polymer/*.slim"
+                    ]
+  sass            : [
+                      "#{inputDest}/sass/**/*.scss",
+                      "!#{inputDest}/sass/polymer/*.scss"
+                    ]
+  coffee          : [
+                      "#{inputDest}/coffeescript/application.coffee"
+                      "#{inputDest}/coffeescript/angular/app.coffee"
+                    ]
+  coffee_includes : [
+                      "#{inputDest}/coffeescript/**/*.coffee",
+                      "!#{inputDest}/coffeescript/polymer/*.coffee"
+                    ]
+
+  angular_scripts : ["#{inputDest}/coffeescript/angular/**/*.coffee"]
+
+
   polymer_html    : ["./app/views/polymer/*.slim"]
+  polymer_styles  : ["#{inputDest}/sass/polymer/*.scss"]
+  polymer_scripts : ["#{inputDest}/coffeescript/polymer/*.coffee"]
+
   bower           : [
                      "./bower_components/deb.js/build/deb.min.js",
                      "./bower_components/userapp/userapp.client.js",
@@ -39,6 +57,13 @@ gulp.task 'browser-sync', ->
     notify : false
     server :
       baseDir : "./"
+
+gulp.task "angular-scripts", ->
+  gulp.src paths.angular_scripts
+  .pipe run.plumber()
+  .pipe run.include { extensions : "coffee" }
+  .pipe run.notify { message : 'Angular scripts running!' }
+  .pipe reload { stream : true, once : true }
 
 gulp.task "slim", ->
   gulp.src paths.slim
@@ -65,7 +90,7 @@ gulp.task "coffee", ->
   .pipe run.plumber()
   .pipe run.include { extensions : "coffee" }
   .pipe run.coffee { bare : true }
-  .pipe run.rename { suffix : '.min' }
+  .pipe run.concat( "application.min.js" )
   .pipe run.uglify()
   .pipe run.filesize()
   .pipe gulp.dest "#{outputDest}/js/"
@@ -129,8 +154,9 @@ gulp.task "default", [ "browser-sync", "merge-bower", "watch" ]
 gulp.task "watch", ['browser-sync'], () ->
   gulp.watch paths.slim,                ["slim"]
   gulp.watch paths.sass,                ["sass"]
-  gulp.watch paths.coffee,              ["coffee"]
+  gulp.watch paths.coffee,              ["coffee", "angular-scripts"]
   gulp.watch paths.coffee_includes,     ["coffee"]
+  gulp.watch paths.angular_scripts,     ["angular-scripts"]
   gulp.watch paths.polymer_html,        ["polymer-html"]
   gulp.watch paths.polymer_styles,      ["polymer-styles"]
   gulp.watch paths.polymer_scripts,     ["polymer-scripts"]
