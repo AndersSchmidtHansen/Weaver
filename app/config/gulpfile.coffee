@@ -48,6 +48,7 @@ paths =
                      "bower_components/deb.js/build/deb.min.js",
                      "bower_components/userapp/userapp.client.js",
                      "bower_components/userapp-angular/angularjs.userapp.js",
+                     "bower_components/restangular/dist/restangular.min.js",
                      "!bower_components/platform/*",
                      "!bower_components/polymer/*"
                     ]
@@ -77,7 +78,6 @@ gulp.task "slim", ->
 
 gulp.task "sass", ->
   gulp.src paths.sass
-  .pipe run.watch()
   .pipe run.plumber()
   .pipe run.rubySass { style : 'compressed' }
   .pipe run.autoprefixer 'last 2 version', 'safari 5', 'ie 9', 'ios 6', 'android 4'
@@ -90,7 +90,6 @@ gulp.task "sass", ->
 
 gulp.task "coffee", ->
   gulp.src paths.coffee
-  .pipe run.watch()
   .pipe run.plumber()
   .pipe run.include { extensions : "coffee" }
   .pipe run.coffee { bare : true }
@@ -112,7 +111,6 @@ gulp.task "generate-index", ->
 # Polymer Tasks
 gulp.task "polymer-html", ->
   gulp.src paths.polymer_html
-  .pipe run.watch()
   .pipe run.plumber()
   .pipe run.slim { pretty : true }
   .pipe gulp.dest "#{outputDest}/html/polymer/"
@@ -121,7 +119,6 @@ gulp.task "polymer-html", ->
 
 gulp.task "polymer-styles", ->
   gulp.src paths.polymer_styles
-  .pipe run.watch()
   .pipe run.plumber()
   .pipe run.rubySass { style : 'compressed' }
   .pipe run.autoprefixer 'last 2 version', 'safari 5', 'ie 9', 'ios 6', 'android 4'
@@ -134,7 +131,6 @@ gulp.task "polymer-styles", ->
 
 gulp.task "polymer-scripts", ->
   gulp.src paths.polymer_scripts
-  .pipe run.watch()
   .pipe run.plumber()
   .pipe run.include { extensions : "coffee" }
   .pipe run.coffee { bare : true }
