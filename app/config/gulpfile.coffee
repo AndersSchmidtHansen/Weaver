@@ -164,7 +164,7 @@ gulp.task "watch", ['browser-sync'], () ->
   gulp.watch paths.coffee,              ["coffee", "angular-scripts"]
   gulp.watch paths.coffee_includes,     ["coffee"]
   gulp.watch paths.angular_scripts,     ["angular-scripts"]
-  gulp.watch paths.polymer_html,        ["polymer-html"]
+  gulp.watch paths.polymer_html,        ["polymer-html", "slim"]
   gulp.watch paths.polymer_styles,      ["polymer-styles"]
   gulp.watch paths.polymer_scripts,     ["polymer-scripts"]
   gulp.watch "./app/views/index.slim",  ["generate-index"]
