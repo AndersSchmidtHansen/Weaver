@@ -1,7 +1,7 @@
 Weaver
 ===========
 
-Framework for crafting simple web applications utilizing Polymer elements and Angular.
+Framework for crafting simple web applications utilizing Polymer, Angular, UserApp and Firebase.
 
 **Gulp** is modified to:
 
@@ -25,6 +25,7 @@ Weaver leverages the following technologies and methodologies:
 - Coffeescript
 - BrowserSync
 - UserApp (for easy user registration and management)
+- Firebase (for a RESTful API-driven database with good Angular support)
 
 ### How can I use it?
 Usage is pretty straightforward. First, clone the repo:
